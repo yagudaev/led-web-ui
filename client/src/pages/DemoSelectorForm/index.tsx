@@ -30,7 +30,8 @@ export default () => (
     <div id="components-form-demo-validate-static">
       <Form {...formItemLayout}>
         <Form.Item label="Demo #" hasFeedback>
-          <Select defaultValue="1">
+          <Select defaultValue="0">
+            <Option value="0">0</Option>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
             <Option value="3">3</Option>
