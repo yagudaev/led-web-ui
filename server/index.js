@@ -6,7 +6,7 @@ const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 
 app.get('/api/demos', async (req, res) => {
-  const { stdout, stderr } = await exec('cat index.js')
+  const { stdout, stderr } = await exec('cd ../../rpi-rgb-led-matrix/examples-api-use/; sudo ./demo -D1 --led-rows=64 --led-cols=64 --led-slowdown-gpio=1 --led-scan-mode=0 --led-pixel-mapper="Rotate:90" --led-brightness=10 --led-daemon ./strawberry.ppm -m 0')
   res.send(stdout)
 })
 
