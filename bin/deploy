@@ -1,0 +1,13 @@
+#!/bin/sh
+
+ssh pi@raspberrypi.local 'cd ~/Documents/led-web-ui;\
+  git pull; \
+  pm2 stop all; \
+  cd client; \
+  npm install; \
+  npm build; \
+  cd ../server; \
+  npm install; \
+  pm2 start index.js --name app; \
+  '
+
