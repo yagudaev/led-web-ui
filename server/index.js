@@ -1,12 +1,12 @@
+const process = require('process')
+const NODE_ENV = process.env.NODE_ENV
+
 const express = require('express')
 const app = express()
-const port = 3001
+const port = process.env.PORT || 3001
 
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
-
-const process = require('process')
-const NODE_ENV = process.env.NODE_ENV
 
 const path = require('path')
 
