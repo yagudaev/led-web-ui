@@ -12,4 +12,3 @@ ssh pi@raspberrypi.local 'cd ~/Documents/led-web-ui && \
   npm install && \
   NODE_ENV=production pm2 start index.js --name app; \
   '
-
