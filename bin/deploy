@@ -10,5 +10,6 @@ ssh pi@raspberrypi.local 'cd ~/Documents/led-web-ui && \
   pm2 stop all; \
   cd server && \
   npm install && \
-  PORT=80 NODE_ENV=production sudo pm2 start index.js --name app; \
+  export PORT=80 && \
+  NODE_ENV=production pm2 start index.js --name app; \
   '
