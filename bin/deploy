@@ -1,16 +1,14 @@
 #!/bin/sh
 
-cd ../client && yarn install && yarn build && \
+# cd client && yarn install && yarn build && \
+# cd .. && \
 git add . && \
 git commit -am "new version for deploy" \
-git push && \
+# git push && \
 ssh pi@raspberrypi.local 'cd ~/Documents/led-web-ui;\
   git pull && \
   pm2 stop all && \
-  cd client && \
-  npm install && \
-  npm build && \
-  cd ../server && \
+  cd server && \
   npm install && \
   NODE_ENV=production pm2 start index.js --name app; \
   '
