@@ -11,13 +11,17 @@ const exec = util.promisify(require('child_process').exec)
 const path = require('path')
 const upload = require('jquery-file-upload-middleware')
 
+const cors = require('cors')
+
+app.use(cors())
+
 app.post('/api/demos', async (req, res) => {
   const { stdout, stderr } = await exec('cd ../../rpi-rgb-led-matrix/examples-api-use/; sudo ./demo -D1 --led-rows=64 --led-cols=64 --led-slowdown-gpio=1 --led-scan-mode=0 --led-pixel-mapper="Rotate:90" --led-brightness=10 --led-daemon ./strawberry.ppm -m 0')
   res.send(stdout)
 })
 
 upload.configure({
-  uploadDir: __dirname + '/public/uploads/',
+  uploadDir: path.join(__dirname, 'public', 'uploads'),
   uploadUrl: '/api/uploads'
 })
 
@@ -37,7 +41,8 @@ app.delete('/api/upload', function( req, res ){
 app.use('/api/upload', function(req, res, next){
   upload.fileHandler({
     uploadDir: function () {
-      return __dirname + '/public/uploads/'
+      console.log('upload dir is', path.join(__dirname, 'public', 'uploads'))
+      return path.join(__dirname, 'public', 'uploads')
     },
     uploadUrl: function () {
       return '/uploads'
